@@ -30,15 +30,28 @@ public class Main {
         System.out.println(str);
 
         String[] strOnlyWithNum = str.split("\\D+");
-        for (int i=0; i< strOnlyWithNum.length; i++) {
+        for (int i = 0; i < strOnlyWithNum.length; i++) {
             System.out.print(strOnlyWithNum[i] + " ");
         }
 
         Integer summ = 0;
-        for (int i=0; i< strOnlyWithNum.length; i++) {
+        for (int i = 0; i < strOnlyWithNum.length; i++) {
             summ = summ + (Integer.parseInt(strOnlyWithNum[i]));
         }
         System.out.println("\n" + "Сумма чисел: " + summ);
+
+        File textNew = new File("data/output_48.txt");
+        BufferedWriter writeNewText;
+        try {
+            writeNewText = new BufferedWriter(new FileWriter("output_48.txt"));
+        } catch (IOException e) {
+            System.out.println("Фаил не найден!");
+            return;
+        }
+        String summOut = Integer.toString(summ);
+        writeNewText.write("Сумма чисел равна: " + summOut);
+        writeNewText.close();
+
 
         Map<String, Integer> numbers = new HashMap<String, Integer>();
         for (String num : strOnlyWithNum) {
